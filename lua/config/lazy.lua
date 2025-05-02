@@ -53,6 +53,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.php" },
+    { import = "lazyvim.plugins.extras.lang.astro" },
 
     -- Coding plugins
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
