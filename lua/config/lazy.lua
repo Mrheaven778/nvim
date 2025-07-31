@@ -1,13 +1,26 @@
 -- This file contains the configuration for setting up the lazy.nvim plugin manager in Neovim.
 
+-- Node.js configuration - always use latest stable version
+vim.g.node_host_prog = vim.fn.exepath("node") or "/usr/local/bin/node"
+-- Ensure we're using a recent Node version for LSPs and plugins
+if vim.fn.executable("node") == 1 then
+  local node_version = vim.fn.system("node --version"):gsub("\n", "")
+  print("Using Node.js version: " .. node_version)
+end
+
+-- Spell-checking
+vim.opt.spell = true -- activa spell checker
+vim.opt.spelllang = { "en" }
+
 -- Define the path to the lazy.nvim plugin
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 -- Check if the lazy.nvim plugin is not already installed
 if not vim.loop.fs_stat(lazypath) then
-  -- Bootstrap lazy.nvim by cloning the repository
-  -- stylua: ignore
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+    -- Bootstrap lazy.nvim by cloning the repository
+    -- stylua: ignore
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
+        lazypath })
 end
 
 -- Prepend the lazy.nvim path to the runtime path
@@ -38,7 +51,7 @@ require("lazy").setup({
     -- Editor plugins
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "lazyvim.plugins.extras.editor.mini-files" },
-    { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
+    -- { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
     { import = "lazyvim.plugins.extras.editor.snacks_picker" },
 
     -- Formatting plugins
@@ -52,11 +65,17 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.php" },
+    { import = "lazyvim.plugins.extras.lang.angular" },
     { import = "lazyvim.plugins.extras.lang.astro" },
+    { import = "lazyvim.plugins.extras.lang.go" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.nix" },
+    { import = "lazyvim.plugins.extras.lang.toml" },
 
     -- Coding plugins
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    { import = "lazyvim.plugins.extras.editor.mini-diff" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
 
     -- Utility plugins
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },

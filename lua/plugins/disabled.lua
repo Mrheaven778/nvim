@@ -13,6 +13,18 @@ return {
     -- URL: https://github.com/yetone/avante.nvim
     -- Description: Este plugin ofrece una serie de mejoras y herramientas para optimizar la edición de texto en Neovim.
     "yetone/avante.nvim",
+    enabled = true,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    enabled = false,
+  },
+  {
+    "tris203/precognition.nvim",
     enabled = false,
   },
 }
